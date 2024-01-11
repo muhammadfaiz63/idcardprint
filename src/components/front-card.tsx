@@ -1,7 +1,27 @@
+'use client';
 import ImageWithFallback from "./image-with-fallback";
+import { useParams } from 'next/navigation';
 import Tag from "./tag";
+import { getIdcardDetail } from '../services/idcard';
+import { useEffect, useState } from "react";
 
 export default function FrontCard() {
+
+  const [dataDetail, setDataDetail] = useState();
+
+  const { id } = useParams();
+
+  const getData = async (id: any) => {
+      if(id){
+        const detail = await getIdcardDetail(id);
+        setDataDetail(detail[0] ?? {});
+      }
+  };
+
+  useEffect(() => {
+      getData(id);
+  }, [id]);
+
   return (
     <div className="flex flex-col w-full p-[30px] space-y-8">
       <div className="flex flex-row justify-between items-center w-full space-x-8">
