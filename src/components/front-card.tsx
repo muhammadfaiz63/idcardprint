@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 export default function FrontCard() {
 
-  const [dataDetail, setDataDetail] = useState(null);
+  const [dataDetail, setDataDetail] = useState<any>(null);
 
   const { id } = useParams();
 
